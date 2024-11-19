@@ -1,9 +1,8 @@
 from IPython.display import HTML, display
 import tabulate	
-import numpy as np
 import pandas as pd
 def ShowDF(DF,col=''):
-    if type(DF)==type(np.zeros((0))):
+    if type(DF)!=type(pd.DataFrame()):
         DF=pd.DataFrame(DF)
     if col=='':
         col=list(DF.columns)
