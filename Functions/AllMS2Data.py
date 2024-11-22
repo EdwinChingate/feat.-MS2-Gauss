@@ -1,18 +1,11 @@
 import numpy as np
-def AllMS2Data(DataSet):
+from mz_RT_spectrum_filter import *
+def AllMS2Data(DataSet,min_RT=0,max_RT=1e5,min_mz=0,max_mz=1e4):
     SummMS2=[]
     FirstSpec=True
     spectrum_id=0
     for SpectralSignals in DataSet:
-        MSLevel=SpectralSignals.getMSLevel()
-        if MSLevel==2:
-            Precursor=SpectralSignals.getPrecursors()[0]
-            MZ=Precursor.getMZ()
-            RT=SpectralSignals.getRT()     
-            Spectrum=np.array(SpectralSignals.get_peaks()).T
-            maxInt=np.max(Spectrum[:,1])
-            SummSpec=np.array([MZ,RT,spectrum_id,maxInt])
-            SummMS2.append(SummSpec)
+        SummMS2=mz_RT_spectrum_filter(SpectralSignals=SpectralSignals,SummMS2=SummMS2,min_RT=min_RT,max_RT=max_RT,min_mz=min_mz,max_mz=max_mz,spectrum_id=spectrum_id)
         spectrum_id+=1
     SummMS2=np.array(SummMS2)      
     return SummMS2
