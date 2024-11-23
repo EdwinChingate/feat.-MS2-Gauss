@@ -3,7 +3,7 @@ from GaussianPeak import *
 from r2_Gauss import *
 def Normal_Fit(PeakData_and_Stats):
     PeakData=PeakData_and_Stats[0]
-    GaussStats=PeakData_and_Stats[1]    
+    GaussStats=PeakData_and_Stats[1]      
     mz=GaussStats[0]
     mz_std=GaussStats[1]
     I_total=GaussStats[4]

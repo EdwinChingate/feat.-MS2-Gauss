@@ -10,9 +10,9 @@ def Find_mzPeak(DataSet,spectrum_idVec,mz,spectrum_id_Loc=0,mz_std=2e-3,stdDista
     peakFilter=(spectrum[:,0]>min_mz_peak)&(spectrum[:,0]<max_mz_peak)&(spectrum[:,1]>minInt)
     PeakData=spectrum[peakFilter,:]
     if (len(PeakData)==0) or ((len(PeakData[:,0])<minSignals) and (count==MaxCount)):
-        PeakData_and_meta=Find_mzPeak(DataSet=DataSet,spectrum_idVec=spectrum_idVec,spectrum_id_Loc=spectrum_id_Loc+1,mz=mz,mz_std=mz_std,stdDistance=stdDistance,minInt=minInt)
+        PeakData_and_meta=Find_mzPeak(DataSet=DataSet,spectrum_idVec=spectrum_idVec,spectrum_id_Loc=spectrum_id_Loc+1,mz=mz,mz_std=mz_std,stdDistance=stdDistance,minInt=minInt,minSignals=minSignals)
     elif (len(PeakData[:,0])<minSignals) and (count<MaxCount):
-        PeakData_and_meta=Find_mzPeak(DataSet=DataSet,spectrum_idVec=spectrum_idVec,spectrum_id_Loc=spectrum_id_Loc,mz=mz,mz_std=mz_std,stdDistance=stdDistance+1,count=count+1,minInt=minInt)
+        PeakData_and_meta=Find_mzPeak(DataSet=DataSet,spectrum_idVec=spectrum_idVec,spectrum_id_Loc=spectrum_id_Loc,mz=mz,mz_std=mz_std,stdDistance=stdDistance+1,count=count+1,minInt=minInt,minSignals=minSignals)
     else:
         PeakData_and_meta=[PeakData,spectrum_id]
     return PeakData_and_meta
