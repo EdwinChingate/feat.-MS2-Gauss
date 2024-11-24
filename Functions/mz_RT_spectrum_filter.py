@@ -12,6 +12,8 @@ def mz_RT_spectrum_filter(SpectralSignals,SummMS2,min_RT,max_RT,min_mz,max_mz,sp
         return SummMS2
     Spectrum=np.array(SpectralSignals.get_peaks()).T
     maxInt=np.max(Spectrum[:,1])
-    SummSpec=np.array([MZ,RT,spectrum_id,maxInt])
+    AllInt=np.sum(Spectrum[:,1])
+    maxInt_frac=maxInt/AllInt
+    SummSpec=np.array([MZ,RT,spectrum_id,maxInt,maxInt_frac])
     SummMS2.append(SummSpec)
     return SummMS2
