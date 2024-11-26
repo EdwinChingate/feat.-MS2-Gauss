@@ -1,6 +1,6 @@
 import numpy as np
 from ms2_peakStats_safe import *
-def ms2_spectrum(RawSpectrum,DataSetName,ms_id,LogFileName,mz_std=2e-3,stdDistance=3,minQuality=40,minInt=1e3,minSignals=5,MaxCount=3,Points_for_regression=4,minPeaks=3): 
+def ms2_spectrum(RawSpectrum,DataSetName,ms_id,LogFileName,mz_std=2e-3,stdDistance=3,minQuality=40,minInt=1e3,minSignals=5,MaxCount=3,Points_for_regression=4,minPeaks=2,sort=2,as_des=-1): 
     RawSpectrum=RawSpectrum[RawSpectrum[:,1]>0,:]
     TotalInt=sum(RawSpectrum[:,1])
     if len(RawSpectrum[:,0])<minSignals:
@@ -27,7 +27,9 @@ def ms2_spectrum(RawSpectrum,DataSetName,ms_id,LogFileName,mz_std=2e-3,stdDistan
     if len(Spectrum)<minPeaks:
         return []
     Spectrum=np.array(Spectrum)    
+    Spectrum=Spectrum[(as_des*Spectrum[:,sort]).argsort(),:]
+    RelIntVec=(Spectrum[:,2]/Spectrum[0,2]*100).reshape(-1, 1) 
+    Spectrum=np.hstack((Spectrum,RelIntVec))
     QualityFilter=Spectrum[:,6]<minQuality
     Spectrum=Spectrum[QualityFilter,:]
-    Spectrum=Spectrum[Spectrum[:,0].argsort(),:]
     return Spectrum
