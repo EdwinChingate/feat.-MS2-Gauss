@@ -1,6 +1,6 @@
 from Find_ms2Peak import *
 from mz_Gauss_std import *
-def ms2Peak(RawSpectrum,mz,mz_std=2e-3,stdDistance=3,minSignals=5,count=0,MaxCount=3,minInt=1e3,Points_for_regression=4):
+def ms2Peak(RawSpectrum,mz,mz_std=2e-3,stdDistance=3,minSignals=4,count=0,MaxCount=3,minInt=1e3,Points_for_regression=4):
     PeakData=Find_ms2Peak(RawSpectrum=RawSpectrum,mz=mz,mz_std=mz_std,stdDistance=stdDistance,minSignals=minSignals,MaxCount=MaxCount,minInt=minInt)
     if len(PeakData)==0:
         return []

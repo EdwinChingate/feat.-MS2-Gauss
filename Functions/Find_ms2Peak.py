@@ -1,5 +1,5 @@
 import numpy as np
-def Find_ms2Peak(RawSpectrum,mz,mz_std=2e-3,stdDistance=3,minSignals=5,count=0,MaxCount=3,minInt=1e3,RelativeContribution=False):
+def Find_ms2Peak(RawSpectrum,mz,mz_std=2e-3,stdDistance=3,minSignals=4,count=0,MaxCount=3,minInt=1e3,RelativeContribution=False):
     if count==MaxCount:
         return []
     min_mz_peak=mz-mz_std*stdDistance

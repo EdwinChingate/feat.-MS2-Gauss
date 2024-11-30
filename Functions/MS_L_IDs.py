@@ -8,7 +8,7 @@ def MS_L_IDs(DataSet,min_RT=0,max_RT=1e5,RT_tol=10,Level=1):
         MSLevel=SpectralSignals.getMSLevel()
         RT=SpectralSignals.getRT()
         if MSLevel==Level and RT>min_RT:            
-            IDvec.append([spectrum_id,RT])
+            IDvec.append([int(spectrum_id),RT])
         if RT>max_RT:
             break
         spectrum_id+=1

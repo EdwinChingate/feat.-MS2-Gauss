@@ -1,6 +1,6 @@
 from scipy import stats
 import numpy as np
-def mz_Gauss_std(PeakData,Points_for_regression=5):
+def mz_Gauss_std(PeakData,Points_for_regression=4):
     PeakData=PeakData[PeakData[:,1]>0,:].copy()
     maxInt=np.max(PeakData[:,1])
     maxInt_Loc=np.where(PeakData[:,1]==maxInt)[0][0]
