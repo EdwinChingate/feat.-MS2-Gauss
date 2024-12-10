@@ -7,5 +7,5 @@ def LowSignalClustering(SignalVec0,minSignal=0):
     NeighboursList,SignalsSet=CloseNeighboursList(SignalVec,minSignal=minSignal)
     Modules=ms2_feat_modules(AdjacencyList=NeighboursList,ms2_ids=SignalsSet)
     ModulesStats=SignalsModulesStats(Modules,SignalVec)
-    NoiseTres=ModulesStats[0,2]
-    return NoiseTres
+    NoiseTresVec=ModulesStats[0,:]
+    return NoiseTresVec
