@@ -1,12 +1,18 @@
 import numpy as np
 from LowSignalClustering import *
+from DistanceDistribution import *
 from ResolvingChromatogram import *
-def Feat_RT_edges(Chromatogram,minSpec=10,stdDistance=2,int_col=5,NoiseCluster=False):    
+def Feat_RT_edges(Chromatogram,minSpec=10,stdDistance=3,int_col=5,NoiseCluster=False):    
     if NoiseCluster:
-        NoiseTresVec=LowSignalClustering(SignalVec0=Chromatogram[:,int_col])
+        NoiseTresVec=LowSignalClustering(SignalVec0=Chromatogram[:,int_col])[0]
     else:
-        NoiseTresVec=DistanceDistribution(SignalVec0=Chromatogram[:,int_col])
+        Module=LowSignalClustering(SignalVec0=Chromatogram[:,int_col])[1]
+        NoiseTresVec=DistanceDistribution(SignalVec0=Chromatogram[Module,int_col])
     NoiseTres=NoiseTresVec[0]+NoiseTresVec[1]*stdDistance
+    #print(NoiseTres)
+    #plt.plot(Chromatogram[:,2],Chromatogram[:,1],'k.')
+    #plt.plot(Chromatogram[:,2][[0,-1]],[NoiseTres,NoiseTres])
+    #plt.show()
     IntVec=Chromatogram[:,int_col]
     ValidSignalsLoc=np.where(IntVec>NoiseTres)[0]
     if len(ValidSignalsLoc)==0:
