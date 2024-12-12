@@ -8,4 +8,7 @@ def LowSignalClustering(SignalVec0,minSignal=0):
     Modules=ms2_feat_modules(AdjacencyList=NeighboursList,ms2_ids=SignalsSet)
     ModulesStats=SignalsModulesStats(Modules,SignalVec)
     NoiseTresVec=ModulesStats[0,:]
-    return NoiseTresVec
+    modLoc=int(NoiseTresVec[-1])
+    Module=Modules[modLoc]
+    NoiseTresList=[NoiseTresVec,Module]
+    return NoiseTresList

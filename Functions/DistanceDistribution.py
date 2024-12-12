@@ -7,5 +7,5 @@ def DistanceDistribution(SignalVec0):
     Dif_Int_mean=np.mean(Dif_Signal)
     Dif_Int_std=np.mean(Dif_Signal)
     Signal_min=SignalVec[0]
-    LowerSignalDist=[Signal_min,Dif_Int_std]
+    LowerSignalDist=[Signal_min,Dif_Int_mean]
     return LowerSignalDist
