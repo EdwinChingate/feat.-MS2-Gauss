@@ -6,7 +6,7 @@ def IntegrateChromatographicPeak(EarlyLoc,LateLoc,Chromatogram,minIntFrac=1,RT_c
     NSpec=len(PeakChr[:,0])
     wl=min([int(NSpec/4)*2+1,minWindow])
     poly=min([int(wl/2),minPoly])    
-    SoftInt=savgol_filter(PeakChr[:,int_col], wl, poly)
+    SoftInt=savgol_filter(PeakChr[:,int_col], wl, poly)    
     BL=BaseLine(EarlyLoc=EarlyLoc,LateLoc=LateLoc,Chromatogram=Chromatogram,RT_col=RT_col,int_col=int_col,BaseLinePoints_2=BaseLinePoints_2)
     No_NoiseSignal=SoftInt-BL    
     #plt.plot(PeakChr[:,2],PeakChr[:,1],'.')
