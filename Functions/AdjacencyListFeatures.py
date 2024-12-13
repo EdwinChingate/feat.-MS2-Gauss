@@ -21,7 +21,7 @@ def AdjacencyListFeatures(MS2_features,mz_col=3,mz_CI_col=8,RT_col=2,minRT_col=1
         max_mz=mzMaxVec[feat_id]
         min_RT=RTMinVec[feat_id]
         max_RT=RTMaxVec[feat_id]       
-        NearFilter=(mzMaxVec>min_mz)&(mzMinVec<max_mz)&(RTMaxVec>min_RT)&(RTMinVec<max_RT)
+        NearFilter=(mzMaxVec>=min_mz)&(mzMinVec<=max_mz)&(RTMaxVec>=min_RT)&(RTMinVec<=max_RT)
         Neigbours=np.where(NearFilter)[0]    
         AdjacencyList.append(Neigbours)
         if len(Neigbours)>0:
