@@ -1,4 +1,4 @@
-from scipy import integrate
+from scipy import integrate	
 from scipy.signal import savgol_filter
 from BaseLine import *
 def IntegrateChromatographicPeak(EarlyLoc,LateLoc,Chromatogram,minIntFrac=1,RT_col=2,int_col=5,BaseLinePoints_2=3,minWindow=11,minPoly=5):

@@ -1,5 +1,5 @@
 from MaxIntChromatogram import *
-from ResolvingChromatogram import *
+#from ResolvingChromatogram import *
 from Summarize_ms1_ChPeak import *
 from Feat_RT_edges import *
 def Chrom_ms1Peaks_Summaries(mz,mz_std,DataSet,DataSetName,MS1IDVec,AllPeaks,minIntFrac=1,int_col=1,RT_col=2,BaseLinePoints_2=3,LogFileName='LogFile_ms1.csv',stdDistance=1,minSignals=5,MaxCount=3,minInt=1e3,Points_for_regression=4,alpha=0.01,minSpec=10):
@@ -20,3 +20,4 @@ def Chrom_ms1Peaks_Summaries(mz,mz_std,DataSet,DataSetName,MS1IDVec,AllPeaks,min
         SummaryPeak=[mz]+[mz_std]+[min_mz]+[max_mz]+SummaryChPeak
         SummarizeChFeat.append(SummaryPeak)
     return SummarizeChFeat
+

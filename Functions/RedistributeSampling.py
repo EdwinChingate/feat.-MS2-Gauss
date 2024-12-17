@@ -1,8 +1,9 @@
 import numpy as np
 from scipy.interpolate import interp1d
-def RedistributeSampling(PeakChr,RT_col=2,int_col=1):    
+def RedistributeSampling(PeakChr,N_new=0,RT_col=2,int_col=1):    
     N_signals=len(PeakChr[:,RT_col])
-    N_new=2**int(np.ceil(np.log(N_signals)/np.log(2)))
+    if N_new==0:
+        N_new=2**int(np.ceil(np.log(N_signals)/np.log(2)))
     RedisPeak=np.zeros((N_new,2))
     RT=PeakChr[:,RT_col]
     Int=PeakChr[:,int_col]
