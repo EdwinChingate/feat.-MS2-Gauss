@@ -1,14 +1,17 @@
+from RawGaussParameters import *
 import numpy as np
-def AdjustingPeaksContributions(smooth_peak,ChromatogramMatrix,Background=0):
-    IntVec=smooth_peak[:,1]
-    NSignals=len(IntVec)
-    BackgroundVec=np.ones(NSignals)*Background
-    BackgroundVec=BackgroundVec.reshape(-1,1)
-    ChromatogramMatrixBG=np.append(ChromatogramMatrix,BackgroundVec,axis=1)
-    ChromatogramMatrixTranspose=ChromatogramMatrixBG.T
+def AdjustingPeaksContributions(smooth_peaks,ChromatogramMatrix):
+    IntVec=smooth_peaks[:,1]
+    NPeaks=len(ChromatogramMatrix[0,:])
+    ChromatogramMatrixTranspose=ChromatogramMatrix.T
     MatrixTransInt=np.matmul(ChromatogramMatrixTranspose,IntVec)
-    MatrixTransChromMat=np.matmul(ChromatogramMatrixTranspose,ChromatogramMatrixBG)
-    InvMatrixTransChromMat=np.linalg.inv(MatrixTransChromMat)
-    ContributionsVec=np.matmul(InvMatrixTransChromMat,MatrixTransInt)
-    ContributionsVec[-1]=ContributionsVec[-1]*Background
+    MatrixTransChromMat=np.matmul(ChromatogramMatrixTranspose,ChromatogramMatrix)
+    while True:
+        try:
+            InvMatrixTransChromMat=np.linalg.inv(MatrixTransChromMat)
+            ContributionsVec=np.matmul(InvMatrixTransChromMat,MatrixTransInt)
+            break
+        except:
+            ContributionsVec=np.ones(NPeaks)
+            break
     return ContributionsVec
