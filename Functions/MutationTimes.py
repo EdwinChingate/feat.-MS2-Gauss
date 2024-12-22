@@ -1,11 +1,10 @@
 import numpy as np
-from Mutate import *
-def MutationTimes(Population,MutationRateVec,boundsMat,Times=2):
+from MutantOffspring import *
+def MutationTimes(Population,mut_stdVec=[10,1,1e6],Mutants=4):
     OriginalPopulation=Population.copy()
     NIndividuals=len(OriginalPopulation)
-    NNewIndividuals=NIndividuals*(Times-1) 
-    for individual in np.arange(NNewIndividuals,dtype='int'):
-        ParametersMat_RawIndividual=OriginalPopulation[individual%NIndividuals].copy()
-        ParametersMat=Mutate(ParametersMat=ParametersMat_RawIndividual,MutationRateVec=MutationRateVec,boundsMat=boundsMat)
-        Population.append(ParametersMat)    
+    for individual in np.arange(NIndividuals,dtype='int'):
+        ParametersMat_RawIndividual=OriginalPopulation[individual].copy()
+        MutantPopulation=MutantOffspring(ParametersMat=ParametersMat_RawIndividual,Mutants=Mutants,mut_stdVec=mut_stdVec)        
+        Population=MutantPopulation+Population
     return Population

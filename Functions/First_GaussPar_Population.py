@@ -1,7 +1,7 @@
 import numpy as np
 def First_GaussPar_Population(ParametersMat):
     NParameters=len(ParametersMat[:,0])
-    Population=[]
+    Population=[ParametersMat]
     for individual in np.arange(NParameters,dtype='int'):
         ParametersMat_i=ParametersMat.copy()
         ParametersMat_i[:,2]=0

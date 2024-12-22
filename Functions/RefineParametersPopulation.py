@@ -1,8 +1,8 @@
 from RefineParameters import *
 def RefineParametersPopulation(smooth_peaks,Population):
-    RefinedParametersList=[]
-    for ParametersMat in Population:
+    Population0=Population.copy()
+    for ParametersMat in Population0:
         ParametersList=list(ParametersMat)
         GaussianParMat=RefineParameters(smooth_peaks=smooth_peaks,ParametersList=ParametersList)
-        RefinedParametersList.append(GaussianParMat)
-    return RefinedParametersList                
+        Population.append(GaussianParMat)
+    return Population
