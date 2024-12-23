@@ -1,7 +1,5 @@
 import numpy as np
-from scipy.optimize import curve_fit
-from ChromGaussPeak import *
-# I can get the Gaussian Parameters in a way easier way
+from PeakChromGauss import *
 def ParametersFitGaussPeaks(RT_vec,ChromatogramMatrix,ParametersList):
     NPeaks=int(len(ParametersList))
     RT_max=np.max(RT_vec)
@@ -11,14 +9,11 @@ def ParametersFitGaussPeaks(RT_vec,ChromatogramMatrix,ParametersList):
     for peak_id in np.arange(NPeaks):    
         Int_vec=ChromatogramMatrix[:,peak_id]
         RT,RT_std,Integral=ParametersList[peak_id]        
-        bounds=([RT_min, 0, 0], [RT_max, RT_maxDif, np.inf])
-        while True:
-            try:
-                GaussianParameters=list(curve_fit(ChromGaussPeak, xdata=RT_vec, ydata=Int_vec,p0=ParametersList[peak_id],bounds=bounds)[0])
-                break
-            except:
-                GaussianParameters=ParametersList[peak_id]
-                break
+        bounds=([RT_min, 0, 0],[RT_max,RT_maxDif,np.inf])
+        GaussianParameters=PeakChromGauss(RT_vec=RT_vec,Int_vec=Int_vec,RT=RT,RT_std=RT_std)
+        if len(GaussianParameters)==0:            
+            GaussianParameters=ParametersList[peak_id]
         GaussianParList.append(GaussianParameters)
     GaussianParMat=np.array(GaussianParList)
+    GaussianParMat=GaussianParMat[GaussianParMat[:,0].argsort(),:]
     return GaussianParMat

@@ -1,3 +1,4 @@
+import numpy as np
 def MutantansExtractor(MutationTensor,Mutants):
     MutantPopulation=[]
     for mutant in np.arange(Mutants):
