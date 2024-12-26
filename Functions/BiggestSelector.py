@@ -7,7 +7,7 @@ def BiggestSelector(r2,r2Vec,Population):
         return FittestIndividual_id
     for Individual_id in LevelLineVec:
         Individual=Population[Individual_id]
-        MostIntensePeakInt=np.max(Individual[:,2])
+        MostIntensePeakInt=np.max(Individual[:,2]/Individual[:,1])
         BiggestPeakList.append(MostIntensePeakInt)
     if len(BiggestPeakList)==0:
         return -1
