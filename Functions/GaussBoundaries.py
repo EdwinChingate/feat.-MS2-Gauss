@@ -7,6 +7,6 @@ def GaussBoundaries(smooth_peaks):
     RT_min=np.min(RT_vec)
     RT_maxDif=RT_max-RT_min    
     Integral=integrate.simpson(y=Int_vec,x=RT_vec)
-    boundsList=[[RT_min,RT_max],[0,RT_maxDif],[0,Integral]]
+    boundsList=[[RT_min,RT_max,RT_maxDif],[0,RT_maxDif/6,RT_maxDif/6],[0,Integral,Integral/2]]
     boundsMat=np.array(boundsList)
     return boundsMat

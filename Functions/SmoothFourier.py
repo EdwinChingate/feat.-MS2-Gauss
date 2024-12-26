@@ -1,7 +1,7 @@
 import numpy as np
 from CuttingFreq import *
 from RedistributeSampling import *
-def SmoothFourier(PeakChr,stdDistance=1,RT_col=2,int_col=1,SuggestSavgolWindow=False,SavgolWindowTimes=2):
+def SmoothFourier(PeakChr,stdDistance=1,RT_col=2,int_col=1,SuggestSavgolWindow=False,SavgolWindowTimes=2,MaxSignals=50):
     N_signals=len(PeakChr[:,RT_col])
     RedisPeak=RedistributeSampling(PeakChr=PeakChr,RT_col=RT_col,int_col=int_col)
     time=RedisPeak[:,0]
@@ -19,6 +19,7 @@ def SmoothFourier(PeakChr,stdDistance=1,RT_col=2,int_col=1,SuggestSavgolWindow=F
     filtered_signal = np.fft.ifft(fft_filtered).real
     smooth_fourier=RedisPeak.copy()
     smooth_fourier[:,1]=np.abs(filtered_signal)  
+    N_signals=np.min([N_signals,MaxSignals])
     smooth_fourier=RedistributeSampling(PeakChr=smooth_fourier,N_new=N_signals,RT_col=0,int_col=1)
     if SuggestSavgolWindow:
         SavgolWindow=SamplingRate/FreqTres*SavgolWindowTimes

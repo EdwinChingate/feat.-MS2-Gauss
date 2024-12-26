@@ -1,4 +1,3 @@
-from RawGaussParameters import *
 import numpy as np
 def AdjustingPeaksContributions(smooth_peaks,ChromatogramMatrix):
     IntVec=smooth_peaks[:,1]

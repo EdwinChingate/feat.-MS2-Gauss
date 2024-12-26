@@ -12,5 +12,5 @@ def EvaluatePopulation(Population,smooth_peaks):
         Int_model=sum(ChromatogramMatrix.T)
         r2=r2_Model(RawSignal=Int_vec,ModelSignal=Int_model)
         r2List.append(r2)
-    r2Vec=np.array(r2List)
+    r2Vec=np.array(r2List,dtype='f2')
     return r2Vec
