@@ -1,5 +1,5 @@
 import numpy as np
-def ChromGaussPeak(RT_vec,RT,RT_std,Integral,stdDistance=4):
+def ChromGaussPeak(RT_vec,RT,RT_std,Integral,stdDistance=3):
     NSignals=len(RT_vec)
     Gaussian_Int=np.zeros(NSignals)
     min_RT=RT-stdDistance*RT_std
