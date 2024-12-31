@@ -12,7 +12,7 @@ def FitnessSelector(r2Vec,Population,NSelect=0):
         FittestIndividual_id=BiggestSelector(r2=r2,r2Vec=r2Vec,Population=Population)
         if FittestIndividual_id>=0:
             FittestIndividual=Population[FittestIndividual_id]
-            FitPopulation.append(Population[FittestIndividual_id])
+            FitPopulation.append(FittestIndividual)
             r2ListFit.append(r2Vec[FittestIndividual_id])   
         if len(FitPopulation)==NSelect:
             break
