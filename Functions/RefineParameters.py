@@ -9,5 +9,5 @@ def RefineParameters(ParametersMat,smooth_peaks,boundsMat,ConstrainPeaks=True,ke
     ContributionsVec=AdjustingPeaksContributions(smooth_peaks=smooth_peaks,ChromatogramMatrix=ChromatogramMatrix)
     ChromatogramMatrix=UpdatingChromMat(ChromatogramMatrix=ChromatogramMatrix,ContributionsVec=ContributionsVec)
     ChromatogramMatrix=RefineChromMat(ChromatogramMatrix=ChromatogramMatrix,Chromatogram=smooth_peaks,int_col=1,ParametersMat=ParametersMat,ConstrainPeaks=ConstrainPeaks)
-    GaussianParMat=ParametersFitGaussPeaks(RT_vec=RT_vec,ChromatogramMatrix=ChromatogramMatrix,boundsMat=boundsMat,ParametersMat=ParametersMat,keepRTCentroid=keepRTCentroid)
+    GaussianParMat=ParametersFitGaussPeaks(RT_vec=RT_vec,ChromatogramMatrix=ChromatogramMatrix,boundsMat=boundsMat,ParametersMat=ParametersMat,keepRTCentroid=keepRTCentroid)        
     return GaussianParMat
