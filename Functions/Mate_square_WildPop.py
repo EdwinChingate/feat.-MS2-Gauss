@@ -1,4 +1,5 @@
 import numpy as np
+from UniquePeaks import *
 def Mate_square_WildPop(SeedPopulation,boundsMat,NOffspring=3):
     NSeedIndividuals=len(SeedPopulation)
     Integral=boundsMat[2,1]

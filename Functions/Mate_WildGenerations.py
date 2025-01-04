@@ -1,4 +1,4 @@
-from Mate_square_GaussParPop import *
+from Mate_square_WildPop import *
 from EvaluatePopulation import *
 from FitnessSelector import *
 def Mate_WildGenerations(Population,smooth_peaks,boundsMat,Generations=5,NSelect=10,NOffspring=10):    
