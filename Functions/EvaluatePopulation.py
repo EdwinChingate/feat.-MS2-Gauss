@@ -7,8 +7,7 @@ def EvaluatePopulation(Population,smooth_peaks):
     Int_vec=smooth_peaks[:,1]
     r2List=[]
     for individual in np.arange(NIndividuals, dtype='int'):
-        ParametersList=list(Population[individual])
-        ChromatogramMatrix=OverlappingGaussPeaks(RT_vec=RT_vec,ParametersList=ParametersList)
+        ChromatogramMatrix=OverlappingGaussPeaks(RT_vec=RT_vec,ParametersMat=Population[individual])
         Int_model=sum(ChromatogramMatrix.T)
         r2=r2_Model(RawSignal=Int_vec,ModelSignal=Int_model)
         r2List.append(r2)
