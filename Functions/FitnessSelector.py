@@ -1,5 +1,5 @@
 import numpy as np
-#from BiggestSelector import *
+from BiggestSelector import *
 def FitnessSelector(r2Vec,Population,NSelect=0):
     if NSelect==0:
         NSelect=len(Population)
@@ -9,12 +9,11 @@ def FitnessSelector(r2Vec,Population,NSelect=0):
     r2Vec_unique=r2Vec_unique[Sortr2Vec]
     r2ListFit=[]
     for r2 in r2Vec_unique:
-        FittestIndividual_id=np.where(r2Vec==r2)[0][0]
-        #BiggestSelector(r2=r2,r2Vec=r2Vec,Population=Population)
-        #if FittestIndividual_id>=0:
-        FittestIndividual=Population[FittestIndividual_id]
-        FitPopulation.append(FittestIndividual)
-        r2ListFit.append(r2Vec[FittestIndividual_id])   
+        FittestIndividual_id=BiggestSelector(r2=r2,r2Vec=r2Vec,Population=Population)
+        if FittestIndividual_id>=0:
+            FittestIndividual=Population[FittestIndividual_id]
+            FitPopulation.append(Population[FittestIndividual_id])
+            r2ListFit.append(r2Vec[FittestIndividual_id])   
         if len(FitPopulation)==NSelect:
             break
     return [FitPopulation,r2ListFit]

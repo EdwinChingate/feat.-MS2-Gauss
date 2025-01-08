@@ -8,7 +8,7 @@ def ToolsGaussianChrom(Chromatogram,RT_col=2,int_col=1,MaxSignals=100,distance=2
     L=len(smooth_peaks[:,1])
     SChrom=RedistributeSampling(PeakChr=Chromatogram,N_new=L,RT_col=RT_col,int_col=int_col)
     boundsMat=GaussBoundaries(smooth_peaks=smooth_peaks)
-    ParametersMat=RawGaussSeed(smooth_peaks=smooth_peaks,peaksMax=peaksMax)
+    ParametersMat=RawGaussSeed(smooth_peaks=smooth_peaks,peaksMax=peaksMax,boundsMat=boundsMat)
     NPeaks=len(ParametersMat[:,0])
     minVec=np.array([boundsMat[:,0]]*NPeaks)
     maxVec=np.array([boundsMat[:,1]]*NPeaks)
