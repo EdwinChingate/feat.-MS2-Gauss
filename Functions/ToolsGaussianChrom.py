@@ -5,6 +5,8 @@ from SmoothData_and_FindPeaks import *
 from GaussBoundaries import *
 def ToolsGaussianChrom(Chromatogram,RT_col=2,int_col=1,MaxSignals=100,distance=2):
     smooth_peaks,peaksMax=SmoothData_and_FindPeaks(Chromatogram=Chromatogram,MaxSignals=100,distance=2)
+    if len(peaksMax)==0:
+        return [[],[],[]]
     L=len(smooth_peaks[:,1])
     SChrom=RedistributeSampling(PeakChr=Chromatogram,N_new=L,RT_col=RT_col,int_col=int_col)
     boundsMat=GaussBoundaries(smooth_peaks=smooth_peaks)
