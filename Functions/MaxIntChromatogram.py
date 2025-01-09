@@ -4,4 +4,5 @@ def MaxIntChromatogram(mz,mz_std,AllPeaks,stdDistance=3):
     max_mz=mz+mz_std*stdDistance
     mzLoc=np.where((AllPeaks[:,0]>min_mz)&(AllPeaks[:,0]<max_mz))[0]
     Chromatogram=AllPeaks[mzLoc,:]
+    Chromatogram=Chromatogram[Chromatogram[:,2].argsort(),:]
     return Chromatogram
