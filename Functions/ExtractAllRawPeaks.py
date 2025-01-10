@@ -1,6 +1,6 @@
 from scipy.signal import find_peaks
 import numpy as np
-def ExtractAllPeaks(MS1IDVec,DataSet,height=1e5,distance=10,min_RT=0,max_RT=1200,min_mz=0,max_mz=1000,Peaks=True):
+def ExtractAllRawPeaks(MS1IDVec,DataSet,height=1e5,distance=10,min_RT=0,max_RT=1200,min_mz=0,max_mz=1000,Peaks=True):
     RT_Filter=(MS1IDVec[:,1]>min_RT)&(MS1IDVec[:,1]<max_RT)
     MS1IDVec=MS1IDVec[RT_Filter,:].copy()
     N_ms1=len(MS1IDVec[:,0])
@@ -21,9 +21,9 @@ def ExtractAllPeaks(MS1IDVec,DataSet,height=1e5,distance=10,min_RT=0,max_RT=1200
         RTVec=np.ones(NPeaks)*RT
         Peaks_and_RT=np.c_[RawSpectrum[peaksMax,:],RTVec]
         if FirstSpec:
-            AllPeaks=Peaks_and_RT
+            AllRawPeaks=Peaks_and_RT
             FirstSpec=False
         else:
-            AllPeaks=np.append(AllPeaks,Peaks_and_RT,axis=0)
-    AllPeaks=AllPeaks[AllPeaks[:,0].argsort(),:]
-    return AllPeaks
+            AllRawPeaks=np.append(AllRawPeaks,Peaks_and_RT,axis=0)
+    AllRawPeaks=AllRawPeaks[AllRawPeaks[:,0].argsort(),:]
+    return AllRawPeaks

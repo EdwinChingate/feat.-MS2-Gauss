@@ -1,9 +1,9 @@
 import numpy as np
-def mz_Edges(AllPeaks,FractionSample=30,mz_tol=2e-3):
-    NPeaks=len(AllPeaks[:,0])    
+def mz_Edges(AllRawPeaks,FractionSample=30,mz_tol=2e-3):
+    NPeaks=len(AllRawPeaks[:,0])    
     NSample=int(NPeaks*FractionSample/100)
     SampleVec=np.linspace(0,NPeaks-1,NSample,dtype='int')
-    SomePeaks=AllPeaks[SampleVec,:]
+    SomePeaks=AllRawPeaks[SampleVec,:]
     low_mzVec=SomePeaks[:-1,0]
     high_mzVec=SomePeaks[1:,0]
     mz_difVec=high_mzVec-low_mzVec
