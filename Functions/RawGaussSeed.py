@@ -1,5 +1,6 @@
 import numpy as np
 from UmbrellasStats import *
+import random
 from RefinePop_OnePeak import *
 from FitnessSelector import *
 def RawGaussSeed(smooth_peaks,peaksMax,boundsMat,NSelect=5,Generations=5,minContribution=2):
@@ -13,9 +14,9 @@ def RawGaussSeed(smooth_peaks,peaksMax,boundsMat,NSelect=5,Generations=5,minCont
     PeaksUmbrellaMat[-1,2]=NSignals
     PeaksUmbrellaMat=UmbrellasStats(smooth_peaks=smooth_peaks,PeaksUmbrellaMat=PeaksUmbrellaMat,NPeaks=NPeaks)
     ParametersMat=PeaksUmbrellaMat[:,3:]    
-    ExtraPeak=(np.mean(ParametersMat,axis=0)).reshape(1,-1)
+    ExtraPeak=(np.mean(ParametersMat,axis=0)).reshape(1,-1)+random.random()
     ParametersMat=np.append(ParametersMat,ExtraPeak,axis=0)
-    ExtraPeak=(np.mean(ParametersMat,axis=0)).reshape(1,-1)
+    ExtraPeak=(np.median(ParametersMat,axis=0)).reshape(1,-1)
     ParametersMat=np.append(ParametersMat,ExtraPeak,axis=0)
     ParametersMat=ParametersMat[ParametersMat[:,0].argsort(),:]    
     Population,r2ListFit=RefinePop_OnePeak(Population=[ParametersMat],smooth_peaks=smooth_peaks,boundsMat=boundsMat,NSelect=NSelect,Generations=Generations)

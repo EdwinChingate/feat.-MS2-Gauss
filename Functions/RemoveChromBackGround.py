@@ -1,10 +1,10 @@
 import numpy as np
-def RemoveChromBackGround(PeakSeed,stdDistance,ChromPoints):
+def RemoveChromBackGround(PeakSeed,stdDistance,ChromPoints,stdDistanceDiv=4):
     Chromatogram=PeakSeed[1]
     GaussianParameters=PeakSeed[0]
     min_RT=min(Chromatogram[:,2])
     max_RT=max(Chromatogram[:,2])
-    max_std=(max_RT-min_RT)/stdDistance/2
+    max_std=(max_RT-min_RT)/stdDistanceDiv
     RT_vec=np.linspace(min_RT,max_RT,ChromPoints)
     std_Loc=GaussianParameters[:,1]<max_std
     ParametersMat=GaussianParameters[std_Loc,:]

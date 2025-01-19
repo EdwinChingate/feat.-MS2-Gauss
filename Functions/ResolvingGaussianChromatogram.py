@@ -13,6 +13,7 @@ def ResolvingGaussianChromatogram(Chromatogram,RT_col=2,int_col=1,MaxSignals=100
         GaussianParametersList=list(curve_fit(GaussianChromatogram, xdata=RT_vec, ydata=Int_vec,p0=ParametersList,bounds=bounds)[0])
         NPeaks=int(len(GaussianParametersList)/3)
         GaussianParameters=np.array(GaussianParametersList).reshape(NPeaks, 3)
+        GaussianParameters=GaussianParameters[GaussianParameters[:,0].argsort(),:]
         return GaussianParameters
     except:
         if ShowErrorChrom:
